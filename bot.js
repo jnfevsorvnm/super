@@ -637,10 +637,24 @@ client.on('message', message => {
   });
 
 
-client.on('ready', () => {
-     client.user.setActivity("!help/by legend",{type: 'WATCHING'})
+client.on('ready', function(){
+        client.user.setStatus("dnd");
+        var ms = 60000 ;
+        var setGame = [!help];
+        var i = -1;
+        var j = 0;
+        setInterval(function (){
+            if( i == -1 ){
+                j = 1;
+            }
+            if( i == (setGame.length)-1 ){
+                j = -1;
+            }
+            i = i+j;
+            client.user.setGame(setGame[i],https://www.instagram.com/Abood_naimat0/);
+        }, ms);60000
 
-});
+   });
 
 
 client.on('message', function(msg) {
