@@ -2,9 +2,9 @@
     "name": "Test",
     "description": "Test",
     "version": "2.0.0",
-    "main": "star.js",
+    "main": "bot.js",
     "scripts": {
-      "start": "node star.js"
+      "start": "node bot.js"
     },
     "repository": {
       "type": "git",
@@ -41,14 +41,11 @@
       "simple-youtube-api": "5.0.1",
       "youtube-info": "^1.2.0",
       "jimp": "0.2.28",
-      "quick.db": "6.3.1",
+      "quick.db": "6.2.1",
       "sqlite": "2.9.2",
       "child_process": "1.0.2",
-      "random-number": "0.0.9",
       "ytdl-core": "0.20.2",
-      "figlet": "1.2.0",
-      "snekfetch": "4.0.0",
-      "fs-extra": "6.0.1",
-      "google-translate-api": "2.3.0"
+      "random-number": "0.0.9",
+      "ytdl-core": "0.20.2"
     }
   }
