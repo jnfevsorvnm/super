@@ -78,8 +78,6 @@ client.on('message',message =>{
    
   });
    
-    }
-  });
 
    
 
