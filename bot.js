@@ -637,8 +637,9 @@ client.on('message', message => {
   });
 
 
+var prefix = "!";
 client.on("message", message => {
-if (message.content === "!server") {
+if (message.content === prefix + "server") {
 if (!message.channel.guild) returnverificationLevel = message.guild.verificationLevel;
 const verificationLevels = ["None","Low","Meduim","High","Extreme"];var Y1 = message.guild.createdAt.getFullYear() - 2000
 var M2 = message.guild.createdAt.getMonth()
@@ -657,7 +658,6 @@ const xNiTRoZ = new Discord.RichEmbed()
  message.channel.send({embed:xNiTRoZ});
 }
 });
-
 
   var prefix = "!";
   client.on('message', message => {
