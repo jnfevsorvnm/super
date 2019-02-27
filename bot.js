@@ -1,3 +1,5 @@
+es (697 sloc)  30.4 KB
+    
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const { Client, Util } = require('discord.js');
@@ -8,53 +10,55 @@ const moment = require('moment');
 
 
 
+var Eris = require("eris");
+let  ID = "448501199608610826";
+const BT  = new Eris(process.env.BOT_TOKEN);
+BT.connect(process.env.BOT_TOKEN)
+BT.on("ready", ready => {
+setInterval(function(){
+
+            let currentTime = new Date(),
+            hours = currentTime.getHours() + 2 ,
+            minutes = currentTime.getMinutes(),
+            seconds = currentTime.getSeconds(),
+            years = currentTime.getFullYear(),
+            month = currentTime.getMonth() + 1,
+            day = currentTime.getDate(),
+            week = currentTime.getDay();
 
 
 
-
-client.on('message', message => {
-    var prefix = "!";
-     if(message.content.startsWith(prefix + 'move all')) {
- if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send('**لايوجد لديك صلاحية سحب الأعضاء**');
-   if(!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("**لايوجد لدي صلاحية السحب**");
-if (message.member.voiceChannel == null) return message.channel.send(`**الرجاء الدخول لروم صوتي**`)
- var author = message.member.voiceChannelID;
- var m = message.guild.members.filter(m=>m.voiceChannel)
- message.guild.members.filter(m=>m.voiceChannel).forEach(m => {
- m.setVoiceChannel(author)
- })
- message.channel.send(`**تم سحب جميع الأعضاء إليك**`)
-
-
- }
-   });
-
-client.on("guildMemberAdd", member => {
-  member.createDM().then(function (channel) {
-  return channel.send(`ولكم نورت السيرفر  ${member} `) 
-}).catch(console.error)
-
-});
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            var suffix = "AM";
+            if (hours >= 12) {
+                suffix = "PM";
+                hours = hours - 12;
+            }
+            if (hours == 0) {
+                hours = 12;
+            }
+BT.editChannel("448501199608610826", {name : "🌹WEL"})
+BT.editChannel("448501199608610826", {name : "🌹WELC"})
+BT.editChannel("448501199608610826", {name : "🌹WELCO"})
+BT.editChannel("448501199608610826", {name : "🌹WELCOM"})
+BT.editChannel("448501199608610826", {name : "🌹WELCOME"})
+BT.editChannel("448501199608610826", {name : "🌹WELCOME T"})
+BT.editChannel("448501199608610826", {name : "🌹WELCOME TO"})
+BT.editChannel("448501199608610826", {name : "🌹WELCOME TO P"})
+BT.editChannel("448501199608610826", {name : "🌹WELCOME TO PR"})
+BT.editChannel("448501199608610826", {name : "🌹WELCOME TO PRO🌹"})
 
 
 
+}, 5000);
 
-client.on('message', message => {
-    if(message.content === "!bot") {
-        const embed = new Discord.RichEmbed()
-        .setColor("#00FFFF")
-  .addField('**الذاكرة المستخدمة 💾**', `${(process.memoryUsage().rss / 1000000).toFixed()}MB`, true)
-         .addField('**سرعة الاتصال📡**' , `${Date.now() - message.createdTimestamp}` + ' ms')
-        .addField('**استخدام المعالج💿**', `${(process.cpuUsage().rss / 10000).toFixed()}%`, true)
-        .addField('**:globe_with_meridians: عدد السيرفرات**' , `${client.guilds.size}`, true)
-        .addField('**عدد المستخدمين 👥 **' , `${client.users.size}`, true)
-               message.channel.sendEmbed(embed);
-           }
 });
 
  
 client.on('message',message =>{
-    var prefix = "!";
+    var prefix = "*";
     if(message.content.startsWith(prefix + 'top')) {
   message.guild.fetchInvites().then(i =>{
   var invites = [];
@@ -78,16 +82,166 @@ client.on('message',message =>{
    
   });
    
+    }
+  });
 
    
-
+client.on('message', message => {
+    id = client.user.id;
+    guild = message.guild;
+    emojiHasPermission = permission => {
+      console.log(permission);
+      if (guild.member(id).permissions.has(permission, false)) {
+        return ':white_check_mark:';
+      } else {
+        return ':x:';
+      }
+    };
+    if (message.content === '*per') {
+    message.channel.send({embed: {
+      title: ':tools: Permissions',
+      color: 0x06DF00,
+      fields: [
+        {
+   
+          name: 'Administrator :',
+          value: emojiHasPermission('ADMINISTRATOR'),
+          inline: true
+        },
+        {
+          name: 'Create Instant Invite :',
+          value: emojiHasPermission('CREATE_INSTANT_INVITE'),
+          inline: true
+        },
+        {
+          name: 'Kick Members :',
+          value: emojiHasPermission('KICK_MEMBERS'),
+          inline: true
+        },
+        {
+          name: 'Ban Members :',
+          value: emojiHasPermission('BAN_MEMBERS'),
+          inline: true
+        },
+        {
+          name: 'Manage Channels :',
+          value: emojiHasPermission('MANAGE_CHANNELS'),
+          inline: true
+        },
+        {
+          name: 'Manage Guild :',
+          value: emojiHasPermission('MANAGE_GUILD'),
+          inline: true
+        },
+        {
+          name: 'Add Reactions :',
+          value: emojiHasPermission('ADD_REACTIONS'),
+          inline: true
+        },
+        {
+          name: 'View Audit Log :',
+          value: emojiHasPermission('VIEW_AUDIT_LOG'),
+          inline: true
+        },
+        {
+   
+          name: 'Manage Messages :',
+          value: emojiHasPermission('MANAGE_MESSAGES'),
+          inline: true
+        },
+        {
+          name: 'Embed Links :',
+          value: emojiHasPermission('EMBED_LINKS'),
+          inline: true
+        },
+        {
+          name: 'Attach Files :',
+          value: emojiHasPermission('ATTACH_FILES'),
+          inline: true
+        },
+        {
+          name: 'Read Message History :',
+          value: emojiHasPermission('READ_MESSAGE_HISTORY'),
+          inline: true
+        },
+        {
+          name: 'Mention Everyone :',
+          value: emojiHasPermission('MENTION_EVERYONE'),
+          inline: true
+        },
+        {
+          name: 'Use External Emojis :',
+          value: emojiHasPermission('USE_EXTERNAL_EMOJIS'),
+          inline: true
+        },
+        {
+          name: 'Connect :',
+          value: emojiHasPermission('CONNECT'),
+          inline: true
+        },
+        {
+          name: 'Speak :',
+          value: emojiHasPermission('SPEAK'),
+          inline: true
+        },
+        {
+   
+          name: 'Mute Members :',
+          value: emojiHasPermission('MUTE_MEMBERS'),
+          inline: true
+        },
+        {
+          name: 'Deafen Members :',
+          value: emojiHasPermission('DEAFEN_MEMBERS'),
+          inline: true
+        },
+        {
+          name: 'Move Members :',
+          value: emojiHasPermission('MOVE_MEMBERS'),
+          inline: true
+        },
+        {
+          name: 'Use VAD :',
+          value: emojiHasPermission('USE_VAD'),
+          inline: true
+        },
+        {
+          name: 'Change Nickname :',
+          value: emojiHasPermission('CHANGE_NICKNAME'),
+          inline: true
+        },
+        {
+          name: 'Manage Nicknames :',
+          value: emojiHasPermission('MANAGE_NICKNAMES'),
+          inline: true
+        },
+        {
+          name: 'Manage Roles :',
+          value: emojiHasPermission('MANAGE_ROLES'),
+          inline: true
+        },
+        {
+          name: 'Manage Webhooks :',
+          value: emojiHasPermission('MANAGE_WEBHOOKS'),
+          inline: true
+        },
+        {
+          name: 'Manage Emojis :',
+          value: emojiHasPermission('MANAGE_EMOJIS'),
+          inline: true
+        }
+      ]
+    }
+    });
+    }
+  });
 
 
 
    
   client.on("message", async message => {
     if(!message.channel.guild) return;
-    var prefix = "!";
+    var prefix = "*";
 if(message.content.startsWith(prefix + 'invites')) {
 var nul = 0
 var guild = message.guild
@@ -148,7 +302,7 @@ return;
 
 client.on('message', message => {
     if(!message.channel.guild) return;
-var prefix = "!";
+var prefix = "*";
 if(message.content.startsWith(prefix + 'channel')) {
     let channel = message.channel
     var embed = new Discord.RichEmbed()
@@ -167,7 +321,7 @@ if(message.content.startsWith(prefix + 'channel')) {
 
     client.on("message", async message => {
         if(!message.channel.guild) return;
-    var prefix = "!";
+    var prefix = "*";
     if(message.content.startsWith(prefix + 'member')) {
         let guild = await message.guild.fetchMembers()
         let bots = guild.members.filter(m => m.user.bot).size
@@ -194,7 +348,7 @@ if(message.content.startsWith(prefix + 'channel')) {
 
 
         client.on('message', message => {
-            var prefix = "!"
+            var prefix = "*"
       if(message.content.startsWith (prefix  + 'mb')) {
           if(!message.channel.guild) return;
         let embed = new Discord.RichEmbed()
@@ -212,10 +366,43 @@ if(message.content.startsWith(prefix + 'channel')) {
     }
     });
     
-
+    client.on("message", async message => {
+        if(!message.channel.guild) return;
+ var prefix= "*";
+        if(message.content.startsWith(prefix + 'server')) {
+        let guild = message.guild
+        let channel = message.channel
+        let guildicon = guild.icon_url
+        let members = guild.memberCount
+        let bots = guild.members.filter(m => m.user.bot).size
+        let humans = members - bots
+        let allchannels = guild.channels.size
+        let textchannels = guild.channels.filter(e => e.type === "text")
+        let voicechannels = guild.channels.filter(e => e.type === "voice")
+          var embed = new Discord.RichEmbed()
+          .setColor("#000000")
+          .setTitle(`معلومات عن السيرفر`)
+          .setDescription(`معلومات عن : ${guild.name}`)
+          .addField("صاحب السيرفر :", `${guild.owner}`, true)
+          .addField("أيدي السيرفر :", `${guild.id}`, true)
+          .addField("موقع السيرفر :", `${guild.region}`, true)
+          .addField("مستوى حماية السيرفر :", `${guild.verificationLevel}`, true)
+          .addField("عدد الرومات الصوتية :", `${voicechannels.size}`, true)
+          .addField("عدد الرومات الكتابية :", `${textchannels.size}`, true)
+          .addField("عدد اعضاء السيرفر :", `${members}`, true)
+          .addField("عدد البوتات :", `${bots}`, true)
+          .addField("عدد الاشخاص :", `${humans}`, true)
+          .addField("عدد رتب السيرفر :", `${guild.roles.size}`, true)
+          .addField(`أيموجيات الخاصة بالسيرفر : (${guild.emojis.size})`, `- ${guild.emojis.array()}`, true)
+          .setFooter(`تم انشاء هذه السيرفر في: ${guild.createdAt}`)
+ 
+       message.channel.send({ embed: embed });
+ 
+      }
+    });
 
     client.on('message', message => {
-        var prefix = "!"
+        var prefix = "*"
         if(message.content === prefix + "emojis") {
           const emojiList = message.guild.emojis.map(e=>e.toString()).join(" ");
           message.channel.send(emojiList);
@@ -271,7 +458,7 @@ if(message.content.startsWith(prefix + 'channel')) {
     }); 
 
     client.on('message', message => {
-        if (message.content.startsWith("!avatar")) {
+        if (message.content.startsWith("*avatar")) {
             var mentionned = message.mentions.users.first();
         var x5bzm;
           if(mentionned){
@@ -305,7 +492,7 @@ if(message.content.startsWith(prefix + 'channel')) {
     });
 
 
-    var prefix = "!";
+    var prefix = "*";
  
     client.on('message', message => {
       if (message.author.bot) return;
@@ -335,7 +522,7 @@ if(message.content.startsWith(prefix + 'channel')) {
     });
      
     client.on("message", message => {
-        const prefix = "!"
+        const prefix = "*"
                    
               if(!message.channel.guild) return;
        if(message.author.bot) return;
@@ -354,7 +541,7 @@ if(message.content.startsWith(prefix + 'channel')) {
       });
       
 client.on('message', message =>{
-    if(message.content == "!roles"){
+    if(message.content == "*roles"){
         var roles = '',
         ros=message.guild.roles.size,
         role = [];
@@ -368,7 +555,7 @@ client.on('message', message =>{
 
 
 client.on('message', message => {
-    if (message.content === "!rooms") {
+    if (message.content === "*rooms") {
         if (message.author.bot) return
                       if (!message.guild) return;
  
@@ -384,7 +571,7 @@ client.on('message', message => {
 });
  
 
-var prefix = "!";
+var prefix = "*";
 const HeRo = new Discord.Client();
 client.on('message', message => {
     if (message.content === prefix + "date") {
@@ -406,7 +593,7 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    var prefix = "!";
+    var prefix = "*";
     var args = message.content.substring(prefix.length).split(" ");
     if (message.content.startsWith(prefix + "id")) {
     var embed = new Discord.RichEmbed()
@@ -444,7 +631,7 @@ client.on('message', message => {
 
 
   client.on("message", message => {
-    var prefix = "!";
+    var prefix = "*";
             var args = message.content.substring(prefix.length).split(" ");
             if (message.content.startsWith(prefix + "report-owner")) {
   let reportMember = message.guild.member(message.mentions.members.first());
@@ -487,47 +674,7 @@ client.on('message', message => {
   });
 
 
-client.on('ready', function(){
-        client.user.setStatus("dnd");
-        var ms = 60000 ;
-        var setGame = [!help];
-        var i = -1;
-        var j = 0;
-        setInterval(function (){
-            if( i == -1 ){
-                j = 1;
-            }
-            if( i == (setGame.length)-1 ){
-                j = -1;
-            }
-            i = i+j;
-        client.user.setGame(setGame[i],`http://twitch.tv/S-F`);    
-        }, ms);60000
-
-   });
-
-
-client.on('message', function(msg) {
-    const prefix = '!'
-    if(msg.content.startsWith (prefix  + 'server')) {
-      let embed = new Discord.RichEmbed()
-      .setColor('RANDOM')
-      .setThumbnail(msg.guild.iconURL)
-      .setTitle(`Showing Details Of  **${msg.guild.name}*`)
-      .addField('🌐** نوع السيرفر**',`[** __${msg.guild.region}__ **]`,true)
-      .addField('🏅** __الرتب__**',`[** __${msg.guild.roles.size}__ **]`,true)
-      .addField('🔴**__ عدد الاعضاء__**',`[** __${msg.guild.memberCount}__ **]`,true)
-      .addField('🔵**__ عدد الاعضاء الاونلاين__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
-      .addField('📝**__ الرومات الكتابية__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
-      .addField('🎤**__ رومات الصوت__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
-      .addField('👑**__ الأونـر__**',`**${msg.guild.owner}**`,true)
-      .addField('🆔**__ ايدي السيرفر__**',`**${msg.guild.id}**`,true)
-      .addField('📅**__ تم عمل السيرفر في__**',msg.guild.createdAt.toLocaleString())
-      msg.channel.send({embed:embed});
-    }
-  });
-
-  var prefix = "!";
+  var prefix = "*";
   client.on('message', message => {
            if (message.content === prefix + "dt") {
            if (!message.channel.guild) return message.reply('** This command only for servers **');  
@@ -593,33 +740,33 @@ client.on('message', function(msg) {
       });
    
                   client.on('message', message => {
-                      var prefix = "!";
+                      var prefix = "*";
                        
                         if (!message.content.startsWith(prefix)) return;
                         var args = message.content.split(' ').slice(1);
                         var argresult = args.join(' ');
-                        if (message.author.id == 396958215377780747) return;
+                        if (message.author.id == 410835593451405312) return;
                        
                 
                        
                 
                        
                       if (message.content.startsWith(prefix + 'setname')) {
-                      if (message.author.id !== '396958215377780747') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
+                      if (message.author.id !== '411564557027508235') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
                         client.user.setUsername(argresult).then
                             message.channel.sendMessage(`**${argresult}** : تم تغير الأسم`)
                         return message.reply("**لا تستطيع تغير الأسم الا بعد ساعتين**");
                       } else
                            
                       if (message.content.startsWith(prefix + 'setavatar')) {
-                      if (message.author.id !== '396958215377780747') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
+                      if (message.author.id !== '411564557027508235') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
                       client.user.setAvatar(argresult);
                           message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
                       }
                        
                        });
 client.on("message", message => {
-if (message.content === "!help") {
+if (message.content === "*help") {
 message.react("✅")
 message.react("😵")
                          const embed = new Discord.RichEmbed() 
@@ -628,33 +775,33 @@ message.react("😵")
  ══════════ஜ۩۞۩ஜ════════════
 🌎「اوامر عامة」💎
                        
-🌎!server 「يعرض لك معلومات السيرفر」
+🌎!*server 「يعرض لك معلومات السيرفر」
  
-🌎!id 「أمر الايدي」
-🌎!per 「لمعرفة خصائص رتبتك」
-🌎!mb 「لمعرفة حالة الاعضاء」 
-🌎!member 「عدد وحالة اعضاء السيرفر」 
+🌎*id 「أمر الايدي」
+🌎*per 「لمعرفة خصائص رتبتك」
+🌎*mb 「لمعرفة حالة الاعضاء」 
+🌎*member 「عدد وحالة اعضاء السيرفر」 
                         
-🌎!report 「للابلاغ عن شخص」
+🌎*report 「للابلاغ عن شخص」
 ملاحظة:**يجب انشاء روم بأسم report لتلقي الابلاغات**
-🌎!report-owner 「لأرسال ابلاغ لصاحب السيرفر」 
-🌎!date 「لمعرفه التاريخ」
-🌎!dt 「لمعرفة التاريخ والوقت لدولة مصر والسعودية والامارات」
+🌎*report-owner 「لأرسال ابلاغ لصاحب السيرفر」 
+🌎*date 「لمعرفه التاريخ」
+🌎*dt 「لمعرفة التاريخ والوقت لدولة مصر والسعودية والامارات」
                            
-🌎!ping 「لمعرفه سرعه البوت」
-🌎!emojis 「يعرض لك ايموجيات حقت السيرفر」
-🌎!rooms 「لعرض عدد واسماء الرومات」
-🌎!roles 「لعرض اسماءالرتب」
-🌎!channel 「يعرض لك معلومات عن الروم」
-🌎!embed 「خاصيه غرد لكن بغير طريقه」
-🌎!say 「لي يكرر الكلام الذي تقوله」
+🌎*ping 「لمعرفه سرعه البوت」
+🌎*emojis 「يعرض لك ايموجيات حقت السيرفر」
+🌎*rooms 「لعرض عدد واسماء الرومات」
+🌎*roles 「لعرض اسماءالرتب」
+🌎*channel 「يعرض لك معلومات عن الروم」
+🌎*embed 「خاصيه غرد لكن بغير طريقه」
+🌎*say 「لي يكرر الكلام الذي تقوله」
 🌎رابط
 「لارسال رابط السيرفر على الخاص」
-🌎!invites 「يعرض لك كم جبت اعضاء لهذة السيرفر」
-🌎!invite-codes 「يرسل لك على الخاص جميع الروابط التي قمت بأنشائها لهذة السيرفر」
-🌎!top 「يعرض لك جميع روابط دعوات التي تم انشائها مع عدد الاشخاص الي دخلو من الرابط」
-🎴!avatar 「لي عرض صورتك او صوره اي شخص」
-🎴!image 「لي عرض صوره السيرفر」
+🌎*invites 「يعرض لك كم جبت اعضاء لهذة السيرفر」
+🌎*invite-codes 「يرسل لك على الخاص جميع الروابط التي قمت بأنشائها لهذة السيرفر」
+🌎*top 「يعرض لك جميع روابط دعوات التي تم انشائها مع عدد الاشخاص الي دخلو من الرابط」
+🎴*avatar 「لي عرض صورتك او صوره اي شخص」
+🎴*image 「لي عرض صوره السيرفر」
 ══════════ஜ۩۞۩ஜ════════════   
                          
                           `)
