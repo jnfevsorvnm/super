@@ -501,7 +501,7 @@ client.on('ready', function(){
                 j = -1;
             }
             i = i+j;
-            client.user.setGame(setGame[i],hi ;
+        client.user.setGame(setGame[i],`http://twitch.tv/S-F`);    
         }, ms);60000
 
    });
