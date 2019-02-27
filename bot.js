@@ -1,5 +1,3 @@
-es (697 sloc)  30.4 KB
-    
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const { Client, Util } = require('discord.js');
